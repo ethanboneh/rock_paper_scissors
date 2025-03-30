@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log("hello world");
+      function getComputerChoice() {
+        let x = Math.random();
+        if (x > 0.66) {
+          return "rock";
+        } else if (x > 0.33) {
+          return "paper";
+        } else {
+          return "scissors";
+        }
+      }
+
+      function getHumanChoice() {
+        return prompt("Enter your choice");
+      }
+
+      //   console.log(getComputerChoice());
+      //   console.log(getHumanChoice());
+
+      let humanScore = 0;
+      let computerScore = 0;
+
+      function playRound(humanChoice, computerChoice) {
+        humanChoice = humanChoice.toLowerCase();
+        console.log("Logging");
+        console.log(humanChoice);
+        console.log(computerChoice);
+        console.log("You lose! Paper beats rock");
+        humanScore++;
+      }
+
+      function playGame() {
+        for (let i = 0; i < 5; i++) {
+          let humanChoice = getHumanChoice();
+          let computerChoice = getComputerChoice();
+          playRound(humanChoice, computerChoice);
+        }
+        console.log("Results:");
+        console.log(humanScore);
+        console.log(computerScore);
+      }
+
+      playGame();
+    </script>
+  </body>
+</html>
