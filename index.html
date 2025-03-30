@@ -6,8 +6,31 @@
     <title>Document</title>
   </head>
   <body>
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissors">Scissors</button>
+
+    <div id="results"></div>
+
     <script>
-      console.log("hello world");
+      const rock_btn = document.querySelector("#rock");
+      const paper_btn = document.querySelector("#paper");
+      const scissors_btn = document.querySelector("#scissors");
+
+      rock_btn.addEventListener("click", () => {
+        let computerChoice = getComputerChoice();
+        console.log(computerChoice);
+        playRound("rock", computerChoice);
+      });
+      paper_btn.addEventListener("click", () => {
+        let computerChoice = getComputerChoice();
+        playRound("paper", computerChoice);
+      });
+      scissors_btn.addEventListener("click", () => {
+        let computerChoice = getComputerChoice();
+        playRound("scissors", computerChoice);
+      });
+
       function getComputerChoice() {
         let x = Math.random();
         if (x > 0.66) {
@@ -23,33 +46,32 @@
         return prompt("Enter your choice");
       }
 
-      //   console.log(getComputerChoice());
-      //   console.log(getHumanChoice());
-
       let humanScore = 0;
       let computerScore = 0;
 
       function playRound(humanChoice, computerChoice) {
         humanChoice = humanChoice.toLowerCase();
-        console.log("Logging");
-        console.log(humanChoice);
-        console.log(computerChoice);
-        console.log("You lose! Paper beats rock");
-        humanScore++;
-      }
+        const results = document.querySelector("#results");
+        results.innerHTML = "";
 
-      function playGame() {
-        for (let i = 0; i < 5; i++) {
-          let humanChoice = getHumanChoice();
-          let computerChoice = getComputerChoice();
-          playRound(humanChoice, computerChoice);
+        results.style.backgroundColor = "Red";
+
+        if (humanScore < 5) {
+          const human = document.createElement("p");
+          human.textContent = humanChoice;
+          const computer = document.createElement("p");
+          computer.textContent = computerChoice;
+
+          results.appendChild(human);
+          results.appendChild(computer);
+          humanScore++;
+        } else {
+          const finished = document.createElement("p");
+          finished.textContent = "All done!";
+          results.appendChild(finished);
+          humanScore = 0;
         }
-        console.log("Results:");
-        console.log(humanScore);
-        console.log(computerScore);
       }
-
-      playGame();
     </script>
   </body>
 </html>
